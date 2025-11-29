@@ -1,0 +1,26 @@
+# -maths-
+import numpy as np
+
+# --- User Input ---
+n = int(input("Enter number of vectors: "))
+m = int(input("Enter dimension: "))
+
+vectors = []
+for i in range(n):
+    v = list(map(float, input(f"Enter vector {i+1}: ").split()))
+    vectors.append(np.array(v))
+
+# --- Gram–Schmidt ---
+orthonormal = []
+
+for v in vectors:
+    w = v.copy()
+    for u in orthonormal:
+        w = w - np.dot(w, u) * u
+    w = w / np.linalg.norm(w)
+    orthonormal.append(w)
+
+# --- Output ---
+print("\nOrthonormal Basis:")
+for i, u in enumerate(orthonormal, 1):
+    print(f"u{i} =", np.round(u, 3))
