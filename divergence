@@ -1,0 +1,16 @@
+import sympy as sp
+
+x, y, z = sp.symbols('x y z')
+
+Fx = input("Enter Fx: ")   # example: x*y
+Fy = input("Enter Fy: ")   # example: y*z
+Fz = input("Enter Fz: ")   # example: z*x
+
+Fx = sp.sympify(Fx)
+Fy = sp.sympify(Fy)
+Fz = sp.sympify(Fz)
+
+div = sp.diff(Fx, x) + sp.diff(Fy, y) + sp.diff(Fz, z)
+
+print("\nDivergence of F = ∂Fx/∂x + ∂Fy/∂y + ∂Fz/∂z")
+print("Divergence =", div)
