@@ -1,0 +1,12 @@
+import sympy as sp
+
+x, y = sp.symbols('x y')
+
+f = input("Enter scalar function f(x, y): ")   # Example: x**2 + 3*y
+f = sp.sympify(f)
+
+fx = sp.diff(f, x)
+fy = sp.diff(f, y)
+
+print("\nGradient of f(x, y):")
+print(f"∇f = ({fx}, {fy})")
