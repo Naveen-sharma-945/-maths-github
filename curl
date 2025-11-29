@@ -1,0 +1,14 @@
+import sympy as sp
+
+x, y, z = sp.symbols('x y z')
+
+Fx = sp.sympify(input("Enter Fx: "))   # Example: y*z
+Fy = sp.sympify(input("Enter Fy: "))   # Example: z*x
+Fz = sp.sympify(input("Enter Fz: "))   # Example: x*y
+
+curl_x = sp.diff(Fz, y) - sp.diff(Fy, z)
+curl_y = sp.diff(Fx, z) - sp.diff(Fz, x)
+curl_z = sp.diff(Fy, x) - sp.diff(Fx, y)
+
+print("\nCurl of F = (∂Fz/∂y - ∂Fy/∂z, ∂Fx/∂z - ∂Fz/∂x, ∂Fy/∂x - ∂Fx/∂y)")
+print("Curl =", (curl_x, curl_y, curl_z))
