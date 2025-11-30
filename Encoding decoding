@@ -1,0 +1,32 @@
+import numpy as np
+msg = "LINEAR ALGEBRA IS FUN"
+msg = msg.upper().replace(" ", "")
+
+nums = [ord(c) - 64 for c in msg]
+
+key = np.array([[2, 1],
+                [1, 1]])
+
+while len(nums) % 2 != 0:
+    nums.append(0)
+nums_matrix = np.array(nums).reshape(-1, 2)
+
+encoded = nums_matrix.dot(key)
+print("Encoded Matrix:\n", encoded)
+
+# Find inverse of key matrix
+inv_key = np.linalg.inv(key)
+
+decoded_nums = encoded.dot(inv_key)
+
+decoded_nums = decoded_nums.flatten()
+
+decoded_msg = ""
+for n in decoded_nums:
+    n = round(n)
+    if n > 0:
+        decoded_msg += chr(n + 64)
+    else:
+        decoded_msg += " "
+
+print("\nDecoded Message:", decoded_msg)
