@@ -16,26 +16,23 @@ print("Eigenvalues:", np.round(values, 3))
 rank = np.linalg.matrix_rank(vectors)
 
 if rank == n:
-    print("\nMatrix is Diagonalizable.")
+    print("Matrix is Diagonalizable.")
 else:
     print("\nMatrix is NOT Diagonalizable.")
 
-# -------------------------------
-# VERIFY CAYLEY–HAMILTON THEOREM
-# (A satisfies its own characteristic equation)
-# -------------------------------
-p = np.poly(A)     # coefficients of characteristic polynomial
-# p = [a_n, a_(n-1), ..., a_1, a_0]
 
-# Compute p(A) = a_n*A^n + ... + a_1*A + a_0*I
+p = np.poly(A)     
+
+
+
 result = np.zeros((n, n))
 
 for i in range(n+1):
     power = n - i
     result += p[i] * np.linalg.matrix_power(A, power)
 
-# Check if p(A) = 0
+
 if np.allclose(result, np.zeros((n, n))):
-    print("\nCayley-Hamilton Theorem Verified.")
+    print("Cayley-Hamilton Theorem Verified.")
 else:
-    print("\nCayley-Hamilton Theorem NOT Verified.")
+    print("Cayley-Hamilton Theorem NOT Verified.")
