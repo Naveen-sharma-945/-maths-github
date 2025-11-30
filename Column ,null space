@@ -1,0 +1,46 @@
+import sympy as sp
+
+# ---- USER INPUT MATRIX ----
+r = int(input("Enter number of rows: "))
+c = int(input("Enter number of columns: "))
+
+print("Enter matrix row by row:")
+A_list = []
+for i in range(r):
+    row = list(map(float, input().split()))
+    A_list.append(row)
+
+A = sp.Matrix(A_list)
+
+print("\nMatrix A:")
+sp.pprint(A)
+
+# ---- COLUMN SPACE BASIS ----
+col_space = A.columnspace()
+print("\nBasis of COLUMN SPACE:")
+for v in col_space:
+    sp.pprint(v)
+
+# ---- NULL SPACE BASIS ----
+null_space = A.nullspace()
+print("\nBasis of NULL SPACE:")
+if null_space:
+    for v in null_space:
+        sp.pprint(v)
+else:
+    print("Only zero vector → Null space is {0}")
+
+# ---- ROW SPACE BASIS ----
+row_space = A.rowspace()
+print("\nBasis of ROW SPACE:")
+for v in row_space:
+    sp.pprint(v)
+
+# ---- LEFT NULL SPACE BASIS ----
+left_null = A.T.nullspace()   # Null space of Aᵀ
+print("\nBasis of LEFT NULL SPACE:")
+if left_null:
+    for v in left_null:
+        sp.pprint(v)
+else:
+    print("Only zero vector → Left null space is {0}")
